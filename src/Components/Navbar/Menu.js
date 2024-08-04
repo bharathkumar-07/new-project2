@@ -1,7 +1,11 @@
-import React from 'react';
+import React ,{useContext} from 'react';
 import './Menu.css'
+import { CategoryContext } from '../Context/CategoryContext';
+
 
 const Menu = ({ items }) => {
+
+  const {addToCart}= useContext(CategoryContext);
   return (
     <div className='section-center'>
       {items.map((menuItem) => {
@@ -16,9 +20,11 @@ const Menu = ({ items }) => {
               </header>
               <p className='item-text'>{desc}</p>
             </div>
+            <button className='addToCartBttn' onClick={()=>addToCart}>Add To Cart</button>
           </article>
         );
       })}
+      
     </div>
   );
 };

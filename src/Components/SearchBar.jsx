@@ -8,7 +8,7 @@ const SearchBar = ( {searchResult, setSearchResult} ) => {
         (e)=>{setSearchResult(e.target.value)}}> 
       </input>
       
-      <label className='search'>Search</label>
+      <button className='search'>Search</button>
       
       
      

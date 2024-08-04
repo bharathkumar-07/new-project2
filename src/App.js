@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import './index.css';
 import Menu from './Components/Navbar/Menu';
-import Categories from './Components/Navbar/Catergories';
+import Categories from './Components/Categories/Categories';
 import items from './Components/Navbar/data';
 import Navbar from './Components/Navbar/Navbar';
 import {BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import { CategoryContextProvider } from './Components/Context/CategoryContext';
 const allCategories = ['all', ...new Set(items.map((item) => item.category))];
 
 function App() {
@@ -32,12 +33,13 @@ function App() {
 
   return (
     
-
-    <main>
+    <div className='App'>  
+    <CategoryContextProvider>
     <Router>
+    <Navbar/>
       <Routes>
-        
-      <section className="menu section">
+        <Route path='/' element={
+        <section className="menu section">
        <Categories 
           categories={categories} 
           filterItems={filterItems}  
@@ -46,10 +48,14 @@ function App() {
         />
         < Menu items={menuItems}  />
       </section>
+    }/>
+    <Route path="/cart" />
       </Routes>
       </Router>
+    </CategoryContextProvider>
+    
        
-    </main>
+    </div>
     
   );
 }
